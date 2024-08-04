@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnerseite</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #e0e0e0;
+        background: #181a1b;
+    }
+
+    header {
+        position: relative;
+        background: #121212;
+        color: #e0e0e0;
+        padding: 1.5rem 2rem;
+        text-align: center;
+        border-bottom: 1px solid #333;
+        overflow: hidden;
+    }
+
+    header img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        opacity: 0.3;
+    }
+
+    header h1 {
+        margin-bottom: 0.5rem;
+        font-size: 2.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    nav ul li {
+        display: inline;
+        margin: 0 1rem;
+    }
+
+    nav a {
+        color: #4a90e2;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    main {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 4rem);
+    }
+
+    section {
+        margin-bottom: 2rem;
+        text-align: center;
+        max-width: 800px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #e0e0e0;
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: #b0b0b0;
+    }
+
+    .partner-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    .partner {
+        background: #2c2f33;
+        border: 1px solid #444;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s, border-color 0.3s;
+        min-height: 200px;
+        position: relative;
+    }
+
+    .partner:hover {
+        border-color: #4a90e2;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .partner a.discord-button {
+        display: inline-block;
+        background: #4a90e2;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 1rem;
+        transition: background 0.3s;
+    }
+
+    .partner a.discord-button:hover {
+        background: #357abd;
+    }
+
+    .centered-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: #1e1e1e;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin: 1rem;
+    }
+
+    footer {
+        background: #121212;
+        color: #e0e0e0;
+        text-align: center;
+        padding: 1rem;
+        position: relative;
+        border-top: 1px solid #333;
+    }
+
+    footer a {
+        color: #4a90e2;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+        background-color: #2c2f33;
+        margin: 5% auto;
+        padding: 2rem;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: relative;
+    }
+
+    .close-button {
+        color: #888;
+        float: right;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close-button:hover {
+        color: #e0e0e0;
+    }
+
+    button {
+        background: #4a90e2;
+        border: none;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+    }
+
+    button:hover {
+        background: #357abd;
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
+        }
+
+        nav ul li {
+            margin: 0.5rem 0;
+        }
+
+        .partner-list {
+            gap: 1rem;
+        }
+
+        .partner {
+            max-width: 90%;
+            padding: 1rem;
+        }
+
+        .centered-text {
+            padding: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        header h1 {
+            font-size: 1.5rem;
+        }
+
+        nav ul li {
+            margin: 0.5rem 0;
+        }
+
+        .partner {
+            max-width: 100%;
+        }
+    }
+
+    .spacer {
+        height: 4rem;
+        /* Adjust height to your needs */
+    }
+
+    .discord-button {
+        display: inline-flex;
+        align-items: center;
+        background: #7289da;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: background 0.3s;
+        margin-top: 1rem;
+    }
+
+    .discord-button i {
+        margin-right: 0.5rem;
+    }
+
+    .discord-button:hover {
+        background: #5b6eae;
+    }
+</style>
+</head>
+
+<body>
+    <header>
+        <img src="https://example.com/path/to/your/image.jpg" alt="Hintergrundbild">
+        <h1>Willkommen auf dem Partner Portal!</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">Über Uns</a></li>
+                <li><a href="#partners">Unsere Partner</a></li>
+                <li><a href="#epartneraplli">Partner Werden</a></li>
+                <li><a href="https://discord.gg/6vgdAgXbhq" target="_blank" class="discord-link">
+                        <i class="fab fa-discord"></i> Unser Discord
+                    </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>Über Uns</h2>
+            <p><strong>Herzlich willkommen auf unserem Partner-Portal!</strong></p>
+            <p>Hier finden Sie alle wichtigen Informationen über unsere Partner und haben die Möglichkeit, sich selbst
+                als Partner zu registrieren. Unser Ziel ist es, eine engagierte Gemeinschaft von Serverbetreibern und
+                Mitgliedern zu schaffen, die sich gegenseitig unterstützen und weiterentwickeln.</p>
+
+            <p><strong>Was Sie hier erwartet:</strong></p>
+            <p>Sie erhalten Zugang zu umfassenden Informationen über unsere Partner, können sich für eine Partnerschaft
+                bewerben und sich auf unserem Discord-Server an Diskussionen und Austausch beteiligen.</p>
+
+            <p><strong>Unser Discord-Server:</strong> Dies ist der zentrale Ort für alle Fragen, Anliegen und
+                Diskussionen. Besuchen Sie uns auf Discord, um in Kontakt zu treten und Teil unserer lebhaften Community
+                zu werden.</p>
+
+            <p><strong>Benötigen Sie Unterstützung?</strong> Unsere engagierten Moderatoren und Administratoren stehen
+                Ihnen auf Discord jederzeit zur Verfügung. Kontaktieren Sie uns bei Fragen oder Anliegen – wir freuen
+                uns darauf, Ihnen zu helfen!</p>
+
+        </section>
+
+        <section id="partners">
+            <h2>Unsere Partner</h2>
+            <p>In unserem Bereich „Unsere Partner“ stellen wir Ihnen eine Auswahl an Partnern vor, die unser Netzwerk
+                bereichern und mit denen wir gemeinsam spannende Projekte realisieren. Jeder Partner bringt einzigartige
+                Fähigkeiten und innovative Ideen ein, die unseren gemeinsamen Erfolg fördern.</p>
+            <p>Durch unsere Zusammenarbeit profitieren Sie von exklusiven Angeboten, innovativen Projekten und
+                wertvollen Einblicken. Klicken Sie auf einen Partner, um mehr über deren Leistungen und die spannende
+                Zusammenarbeit zu erfahren.</p>
+            <p>Wir sind stolz auf unsere Partner und freuen uns, Ihnen diese engagierten Organisationen vorzustellen.
+                Erfahren Sie, wie wir gemeinsam neue Standards setzen und herausragende Ergebnisse erzielen.</p>
+            <br>
+            <div class="partner-list">
+                <div class="partner" data-partner="1">
+                    <h3>Cat Development</h3>
+                    <p>Cat Development ist ein innovatives Entwicklerteam, das sich auf die Erstellung von
+                        maßgeschneiderten Discord-Bots und -Tools spezialisiert hat. Derzeit sammeln wir weitere Details
+                        und stellen sicher, dass wir die besten Informationen bereitstellen können.</p>
+                </div>
+                <div class="partner" data-partner="2">
+                    <h3>Paradise x Studio</h3>
+                    <p>Paradise x Studio bietet eine Vielzahl von Dienstleistungen im Bereich Server-Gestaltung und
+                        -Verwaltung. Ihr kreatives Team arbeitet daran, Ihre Server-Träume in die Realität umzusetzen.
+                        Weitere Informationen werden in Kürze verfügbar sein.</p>
+                </div>
+                <div class="partner" data-partner="3">
+                    <h3>Los Angeles Life Roleplay</h3>
+                    <p>Los Angeles Life Roleplay ist ein lebendiger Roleplay-Server, der Ihnen das aufregende Leben in
+                        Los Angeles näherbringt. Ob als Bürger oder Polizei, erleben Sie die spannende Welt des
+                        Roleplays. Details werden noch aktualisiert.</p>
+                </div>
+                <div class="partner" data-partner="4">
+                    <h3>Austrian Roleplay</h3>
+                    <p>Austrian Roleplay bietet authentische Rollenspiel-Erfahrungen in der charmanten Umgebung
+                        Österreichs. Tauchen Sie in eine Welt voller Abenteuer und Realismus ein. Wir warten noch auf
+                        weitere Informationen vom Server-Eigentümer.</p>
+                </div>
+                <div class="partner" data-partner="5">
+                    <h3>Roblox Roleplay</h3>
+                    <p>Im Roblox Roleplay erleben Sie einzigartige Abenteuer und spannende Geschichten in der Welt von
+                        Roblox. Die Details werden noch bekannt gegeben, aber die Vorfreude ist bereits groß!</p>
+                </div>
+                <div class="partner" data-partner="6">
+                    <h3>Neumainfeld Roleplay</h3>
+                    <p>Neumainfeld Roleplay bietet Ihnen die Möglichkeit, in einem detaillierten Rollenspiel-Universum
+                        neue Geschichten zu erleben. Wir sammeln derzeit noch weitere Informationen vom
+                        Server-Eigentümer.</p>
+                </div>
+                <div class="partner" data-partner="7">
+                    <h3>Bochum, Germany</h3>
+                    <p>Erleben Sie das authentische Bochum in unserem Roleplay-Server, der Ihnen spannende Abenteuer in
+                        der deutschen Stadt bietet. Weitere Details folgen in Kürze.</p>
+                </div>
+                <div class="partner" data-partner="8">
+                    <h3>Rosthafen, Germany</h3>
+                    <p>Rosthafen bietet Ihnen eine fesselnde Rollenspiel-Erfahrung in der deutschen Hafenstadt. Wir
+                        arbeiten daran, alle relevanten Informationen vom Server-Eigentümer zu erhalten.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="epartneraplli">
+            <div class="centered-text">
+                <h2>Wie werde ich Partner?</h2>
+                <p>Interessieren Sie sich dafür, Partner bei uns zu werden? Hier erfahren Sie, wie Sie den Weg zur
+                    Partnerschaft beschreiten können:</p>
+
+                <h3>1. Bewerbung auf unserem Discord</h3>
+                <p>Um als Partner aufgenommen zu werden, müssen Sie sich auf unserem Discord-Server bewerben. Der
+                    Bewerbungsprozess stellt sicher, dass unsere Partner gut zu unserer Community passen und beide
+                    Seiten profitieren.</p>
+
+                <h3>2. Vorteile der Partnerschaft</h3>
+                <p>Nach erfolgreicher Bewerbung und Aufnahme als Partner haben Sie die Möglichkeit, Ihren Server auf
+                    unserer Webseite und in unserem Discord-Server vorzustellen. Das verschafft Ihrem Server zusätzliche
+                    Sichtbarkeit und hilft Ihnen, neue Mitglieder zu gewinnen. Zudem erhalten Sie Zugang zu exklusiven
+                    Ressourcen und Unterstützung durch unser Team.</p>
+
+                <h3>3. Mitgliedschaft ohne Partnerschaft</h3>
+                <p>Wenn Sie sich nicht als Partner bewerben möchten, können Sie auch einfach als Mitglied unserer
+                    Community bleiben. Als Mitglied können Sie nach Servern suchen, sich austauschen und von den
+                    Vorteilen und Aktivitäten auf unserem Discord-Server profitieren.</p>
+
+                <h3>4. Kontakt und weitere Informationen</h3>
+                <p>Wir freuen uns auf Ihre Bewerbung und darauf, Sie möglicherweise als neuen Partner begrüßen zu
+                    dürfen. Bei Fragen oder für weitere Informationen stehen wir Ihnen jederzeit auf unserem
+                    Discord-Server zur Verfügung.</p>
+            </div>
+        </section>
+
+        <!-- Add extra space before the footer -->
+        <div class="spacer"></div>
+
+        <div id="partner-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2 id="modal-title">Partner Details</h2>
+                <p id="modal-info"></p>
+                <a id="discord-button" href="" target="_blank" class="discord-button">
+                    <i class="fab fa-discord"></i> Zum Server
+                </a>
+                <button id="continue-button">Weiter</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 DoctorDream <br>
+            <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutzerklärung</a>
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const partners = document.querySelectorAll('.partner');
+            const modal = document.getElementById('partner-modal');
+            const closeButton = document.querySelector('.close-button');
+            const continueButton = document.getElementById('continue-button');
+            const modalTitle = document.getElementById('modal-title');
+            const modalInfo = document.getElementById('modal-info');
+            const discordButton = document.getElementById('discord-button');
+
+            const partnerData = {
+                '1': {
+                    title: 'Cat Development',
+                    info: 'Cat Development ist ein innovatives Entwicklerteam, das sich auf die Erstellung von maßgeschneiderten Discord-Bots und -Tools spezialisiert hat. Derzeit sammeln wir weitere Details und stellen sicher, dass wir die besten Informationen bereitstellen können.',
+                    link: 'https://discord.com/invite/teMR3zRQma'
+                },
+                '2': {
+                    title: 'Paradise x Studio',
+                    info: 'Paradise x Studio bietet eine Vielzahl von Dienstleistungen im Bereich Server-Gestaltung und -Verwaltung. Ihr kreatives Team arbeitet daran, Ihre Server-Träume in die Realität umzusetzen. Weitere Informationen werden in Kürze verfügbar sein.',
+                    link: 'https://discord.com/invite/teMR3zRQma'
+                },
+                '3': {
+                    title: 'Los Angeles Life Roleplay',
+                    info: 'Los Angeles Life Roleplay ist ein lebendiger Roleplay-Server, der Ihnen das aufregende Leben in Los Angeles näherbringt. Ob als Bürger oder Polizei, erleben Sie die spannende Welt des Roleplays. Details werden noch aktualisiert.',
+                    link: 'https://discord.gg/wNufYvmpAA'
+                },
+                '4': {
+                    title: 'Austrian Roleplay',
+                    info: 'Austrian Roleplay bietet authentische Rollenspiel-Erfahrungen in der charmanten Umgebung Österreichs. Tauchen Sie in eine Welt voller Abenteuer und Realismus ein. Wir warten noch auf weitere Informationen vom Server-Eigentümer.',
+                    link: 'N/A'
+                },
+                '5': {
+                    title: 'Roblox Roleplay',
+                    info: 'Im Roblox Roleplay erleben Sie einzigartige Abenteuer und spannende Geschichten in der Welt von Roblox. Die Details werden noch bekannt gegeben, aber die Vorfreude ist bereits groß!',
+                    link: 'https://discord.gg/NKGGY4FwZY'
+                },
+                '6': {
+                    title: 'Neumainfeld Roleplay',
+                    info: 'Neumainfeld Roleplay bietet Ihnen die Möglichkeit, in einem detaillierten Rollenspiel-Universum neue Geschichten zu erleben. Wir sammeln derzeit noch weitere Informationen vom Server-Eigentümer.',
+                    link: 'https://discord.gg/FUZW6aePx4'
+                },
+                '7': {
+                    title: 'Bochum, Germany',
+                    info: 'Erleben Sie das authentische Bochum in unserem Roleplay-Server, der Ihnen spannende Abenteuer in der deutschen Stadt bietet. Weitere Details folgen in Kürze.',
+                    link: 'https://discord.gg/CMDgycmK'
+                },
+                '8': {
+                    title: 'Rosthafen, Germany',
+                    info: 'Rosthafen bietet Ihnen eine fesselnde Rollenspiel-Erfahrung in der deutschen Hafenstadt. Wir arbeiten daran, alle relevanten Informationen vom Server-Eigentümer zu erhalten.',
+                    link: 'https://discord.gg/Kb9eTJkySH'
+                }
+            };
+
+            partners.forEach(partner => {
+                partner.addEventListener('click', () => {
+                    const partnerId = partner.getAttribute('data-partner');
+                    if (partnerData[partnerId]) {
+                        modalTitle.textContent = partnerData[partnerId].title;
+                        modalInfo.textContent = partnerData[partnerId].info;
+                        discordButton.href = partnerData[partnerId].link;
+                        modal.style.display = 'block';
+                    }
+                });
+            });
+
+            closeButton.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            continueButton.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
