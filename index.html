@@ -24,27 +24,28 @@
 
     header {
         position: relative;
-        background: #121212;
+        background: url('') no-repeat center center/cover;
+        /* Bild hier einfügen. Bild erschein hinter Nav-Bar*/
         color: #e0e0e0;
-        padding: 1.5rem 2rem;
+        padding: 2rem 2rem;
+        /*Hier höre und Breite des Bildes ändern*/
         text-align: center;
         border-bottom: 1px solid #333;
-        overflow: hidden;
     }
 
-    header img {
+    header::before {
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        background: rgba(0, 0, 0, 0.5);
         z-index: -1;
-        opacity: 0.3;
     }
 
     header h1 {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
         font-size: 2.5rem;
         position: relative;
         z-index: 1;
@@ -168,56 +169,6 @@
         text-decoration: underline;
     }
 
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .modal-content {
-        background-color: #2c2f33;
-        margin: 5% auto;
-        padding: 2rem;
-        border-radius: 12px;
-        width: 90%;
-        max-width: 600px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        position: relative;
-    }
-
-    .close-button {
-        color: #888;
-        float: right;
-        font-size: 2rem;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .close-button:hover {
-        color: #e0e0e0;
-    }
-
-    button {
-        background: #4a90e2;
-        border: none;
-        color: #fff;
-        padding: 0.75rem 1.5rem;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: background 0.3s;
-    }
-
-    button:hover {
-        background: #357abd;
-    }
-
     @media (max-width: 768px) {
         header h1 {
             font-size: 2rem;
@@ -263,7 +214,6 @@
 
     .spacer {
         height: 4rem;
-        /* Adjust height to your needs */
     }
 
     .discord-button {
@@ -292,7 +242,6 @@
 
 <body>
     <header>
-        <img src="c:\Users\Lucas_2009\Downloads\Partner Portal (6).pn" alt="Logo" style="width: 100px; height: auto;">
         <h1>Welcome to the Partner Portal!</h1>
         <nav>
             <ul>
@@ -338,6 +287,8 @@
                 how we set new standards and achieve outstanding results together.</p>
             <br>
 
+            <h3>Category 1: Special Partner</h3>
+            <br>
             <div class="partner-list">
                 <div class="partner" data-partner="1">
                     <h3>Cat Development</h3>
@@ -356,6 +307,18 @@
                         life in Los Angeles. Whether as a citizen or a police officer, experience the thrilling world of
                         roleplay. Details are still being updated.</p>
                 </div>
+                <div class="partner" data-partner="100">
+                    <h3>N/A</h3>
+                    <p>This spot is currently available. If you are interested in becoming our partner, join our Discord
+                        server to learn more.We look forward to meeting you!</p>
+                </div>
+            </div>
+
+            <br>
+
+            <h3>Category 2: Roleplay Partner</h3>
+            <br>
+            <div class="partner-list">
                 <div class="partner" data-partner="4">
                     <h3>Austrian Roleplay</h3>
                     <p>Austrian Roleplay offers authentic role-playing experiences in the charming setting of Austria.
@@ -363,32 +326,70 @@
                         information from the server owner.</p>
                 </div>
                 <div class="partner" data-partner="5">
-                    <h3>Roblox Roleplay</h3>
+                    <h3>Roblox RP</h3>
                     <p>In Roblox Roleplay, you will experience unique adventures and exciting stories in the world of
                         Roblox. The details will be announced soon, but the anticipation is already high!</p>
                 </div>
                 <div class="partner" data-partner="6">
                     <h3>Neumainfeld Roleplay</h3>
-                    <p>Neumainfeld Roleplay offers you the opportunity to experience new stories in a detailed
-                        role-playing universe. We are currently gathering more information from the server owner.</p>
+                    <p>Austrian Roleplay offers authentic role-playing experiences in the charming setting of Austria.
+                        Immerse yourself in a world full of adventure and realism. We are still awaiting further
+                        information from the server owner.</p>
                 </div>
                 <div class="partner" data-partner="7">
-                    <h3>Bochum, Germany</h3>
-                    <p>Experience authentic Bochum in our roleplay server, offering you exciting adventures in the
-                        German city. More details coming soon.</p>
+                    <h3>Rosthafen, Germany</h3>
+                    <p>Austrian Roleplay offers authentic role-playing experiences in the charming setting of Austria.
+                        Immerse yourself in a world full of adventure and realism. We are still awaiting further
+                        information from the server owner.</p>
                 </div>
                 <div class="partner" data-partner="8">
-                    <h3>Rosthafen, Germany</h3>
-                    <p>Rosthafen offers you an immersive role-playing experience in the German port city. We are working
-                        to gather all relevant information from the server owner.</p>
-                </div>
-                <div class="partner" data-partner="9">
                     <h3>Linz Roleplay</h3>
-                    <p>Linz Roleplay offers you an immersive role-playing experience in the Austrian city of Linz. We
-                        are working to gather all relevant information from the server owner to provide you with the
-                        best experience.</p>
+                    <p>Austrian Roleplay offers authentic role-playing experiences in the charming setting of Austria.
+                        Immerse yourself in a world full of adventure and realism. We are still awaiting further
+                        information from the server owner.</p>
+                </div>
+                <div class="partner" data-partner="100">
+                    <h3>N/A</h3>
+                    <p>This spot is currently available. If you are interested in becoming our partner, join our Discord
+                        server to learn more.We look forward to meeting you!</p>
                 </div>
             </div>
+
+            <br>
+
+            <h3>Category 3: Hub Partner</h3>
+            <br>
+            <div class="partner-list">
+                <div class="partner" data-partner="9">
+                    <h3>Pixel Plast Hub</h3>
+                    <p>Austrian Roleplay offers authentic role-playing experiences in the charming setting of Austria.
+                        Immerse yourself in a world full of adventure and realism. We are still awaiting further
+                        information from the server owner.</p>
+                </div>
+                <div class="partner" data-partner="100">
+                    <h3>N/A</h3>
+                    <p>This spot is currently available. If you are interested in becoming our partner, join our Discord
+                        server to learn more.We look forward to meeting you!</p>
+                </div>
+            </div>
+
+            <br>
+
+            <h3>Category 3: Community Partner</h3>
+            <br>
+            <div class="partner-list">
+                <div class="partner" data-partner="100">
+                    <h3>N/A</h3>
+                    <p>This spot is currently available. If you are interested in becoming our partner, join our Discord
+                        server to learn more.We look forward to meeting you!</p>
+                </div>
+                <div class="partner" data-partner="100">
+                    <h3>N/A</h3>
+                    <p>This spot is currently available. If you are interested in becoming our partner, join our Discord
+                        server to learn more.We look forward to meeting you!</p>
+                </div>
+            </div>
+            <!-- Hier weitere Partner Kategorien einfügen -->
         </section>
 
         <section id="epartneraplli">
@@ -427,9 +428,9 @@
                 <h2 id="modal-title">Partner Details</h2>
                 <p id="modal-info"></p>
                 <a id="discord-button" href="" target="_blank" class="discord-button">
-                    <i class="fab fa-discord"></i> Zum Server
+                    <i class="fab fa-discord"></i> Discord Server
                 </a>
-                <button id="continue-button">Weiter</button>
+                <button id="continue-button">Back</button>
             </div>
         </div>
     </main>
@@ -482,20 +483,25 @@
                     link: 'https://discord.gg/FUZW6aePx4'
                 },
                 '7': {
-                    title: 'Bochum, Germany',
-                    info: 'Experience authentic Bochum in our roleplay server, offering you exciting adventures in the German city. More details coming soon.',
-                    link: 'https://discord.gg/CMDgycmK'
-                },
-                '8': {
                     title: 'Rosthafen, Germany',
                     info: 'Rosthafen offers you an immersive role-playing experience in the German port city. We are working to gather all relevant information from the server owner.',
                     link: 'https://discord.gg/Kb9eTJkySH'
                 },
-                '9': {
+                '8': {
                     title: 'Linz RP',
                     info: 'Linz Roleplay offers you an immersive role-playing experience in the Austrian city of Linz. We are working to gather all relevant information from the server owner to provide you with the best experience.',
                     link: 'https://discord.gg/bZNmuFNpJw'
-                }
+                },
+                '9': {
+                    title: 'Pixel Plast Hub',
+                    info: 'Rosthafen offers you an immersive role-playing experience in the German port city. We are working to gather all relevant information from the server owner.',
+                    link: 'https://discord.gg/Kb9eTJkySH'
+                },
+                '100': {
+                    title: 'N/A',
+                    info: 'This spot is currently available. If you are interested in becoming our partner, join our Discord server to learn more.We look forward to meeting you!',
+                    link: 'https://discord.gg/6vgdAgXbhq'
+                },
             };
 
             partners.forEach(partner => {
